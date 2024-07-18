@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Ethics</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_whyethics.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="{{ url_for('home') }}" class="logo">COMPORTA ETHICS</a>
+        <div class="nav-links">
+            <ul>
+                <li><a href="{{ url_for('news') }}">News</a></li>
+                <li><a href="{{ url_for('your_search') }}">Your search</a></li>
+                <li><a href="{{ url_for('our_mission') }}">Our mission</a></li>
+                <li><a href="{{ url_for('why_ethics') }}">Why Ethics?</a></li>
+                <li><a href="{{ url_for('purchase_process') }}">Purchase process</a></li>
+                <li><a href="{{ url_for('our_partnerships') }}">Our partnerships</a></li>
+                <li><a href="{{ url_for('messages') }}">Conversations</a></li>
+            </ul>
+        </div>
+        {% if current_user.is_authenticated %}
+            <div class="nav-account">
+                <h3><a href="{{ url_for('account') }}" class="account-btn">Your Account</a></h3>
+                <!-- <span class="username">Hello {{ current_user.username }}</span> -->
+            </div>
+        {% else %}
+            <div class="nav-login">
+                <a href="{{ url_for('login') }}">Login/Register</a>
+            </div>
+        {% endif %}
+        <img src="{{ url_for('static', filename='images/menu.png') }}" alt="menu" class="menu">
+    </nav>
+
+    <!-- Floating button -->
+    <button id="scrollToBottomBtn">↓</button>
+
+    <script>
+        document.getElementById('scrollToBottomBtn').addEventListener('click', function() {
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+
+    <header>
+        <div class="header-overlay">
+            <h1>COMPORTA ETHICS</h1>
+            <p>⸻⸻⸻⸻</p>
+            <p><i>Why "Ethics"?</i></p>
+        </div>
+    </header>
+
+    <div class="content-grid">
+        <div class="left-image">
+            <img src="{{ url_for('static', filename='images/beach_pic.jpg') }}" alt="Left Image">
+        </div>
+        <div class="text-content">
+            <h1>A concept of redistribution</h1>
+            <h1>⸻⸻⸻</h1><br><br><br><br>
+            <p>➜ Ethics is a reflection on the values that guide and motivate our actions. Because we want to make the most of the different skills we have acquired in our professional careers and thus give more meaning to our lives, we have decided to redistribute most of our profits to institutions or associations in the following 3 sectors:</p>
+            <br><h3><i>● Environmental</i></h3><br>
+            <h3><i>● Social</i></h3><br>
+            <h3><i>● Cultural</i></h3><br><br><br>
+            <p><i>In order to involve you in the process of redistributing your commission, you can choose one of the lucky beneficiaries of your action from among the many partnerships we have.</i></p>
+        </div>
+        <div class="right-image">
+            <img src="{{ url_for('static', filename='images/coast_pic.jpg') }}" alt="Right Image">
+        </div>
+    </div>
+
+    <div class="full-width-rectangle2">
+        <div class="half-widths">
+            <div class="left-text">
+                <h2>Environmental ⤵︎</h2><br><br>
+                <p>Because the environment is at the heart of our concerns, we believe it is essential to support this cause through our actions. We have partnerships with a number of local, national and international nature protection associations.</p>
+            </div>
+            <div class="right-text">
+                <h2>Social ⤵︎</h2><br><br>
+                <p>Social action refers to all the means by which a society acts on itself to preserve its cohesion, in particular through actions aimed at helping the most vulnerable people or groups to live better.</p><br><br>
+                <h2>Cultural ⤵︎</h2><br><br>
+                <p>A central element of a dynamic society, culture is expressed in the way we tell our stories, celebrate, remember the past, entertain ourselves and imagine the future. Our creative expression helps us define ourselves and see the world through the eyes of others. Help us to promote the local development of cultural and artistic activities such as dance, music, theatre, film, visual arts, reading, writing, literature, etc.</p><br>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-grid2">
+        <div class="left-image2">
+            <img src="{{ url_for('static', filename='images/pic_1.jpg') }}" alt="Left Image">
+        </div>
+        <div class="text-content2">
+            <br><br><br><h3>Would you like to join our Comporta Ethics team?</h3><br>
+            <h3>Would you like to refer your association?</h3><br><br>
+            <p><i>We are always on the lookout for new partnerships. If your association is involved in any of the above areas, we will be delighted to refer you. Please get in touch!</i></p>
+            <!--<div class="clickable-box">
+                <a href="#">↳ Get in Touch ↵</a>
+            </div>-->
+        </div>
+        <div class="right-image2">
+            <img src="{{ url_for('static', filename='images/coast_pic_2.jpg') }}" alt="Right Image">
+        </div>
+    </div>
+
+    <script>
+        const menu = document.querySelector(".menu");
+        const navLinks = document.querySelector(".nav-links");
+
+        menu.addEventListener('click', () => {
+            navLinks.classList.toggle('mobile-menu');
+        });
+    </script>
+
+    <div class="link_to_chat">
+        <a href="{{ url_for('messages') }}">Get in Touch !</a>
+    </div>
+
+    <div class="image-section">
+        <div class="overlay">
+            <h5 class="image-section-text">YOUR PROJECT</h5>
+            <h2 class="image-section-title">YOUR DREAM HOUSE</h2>
+            <p class="image-section-text">Because every project is different, we support you in your search.</p>
+            <div class="clickable-box">
+                <a href="{{ url_for('your_search') }}">↳ Set your search criteria ↵</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Comporta Ethics. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </footer>
+
+</body>
+</html>

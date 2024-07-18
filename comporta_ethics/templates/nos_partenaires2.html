@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Partnerships</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_partners.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="{{ url_for('home') }}" class="logo">COMPORTA ETHICS</a>
+        <div class="nav-links">
+            <ul>
+                <li class="active"><a href="{{ url_for('news') }}">News</a></li>
+                <li class="active"><a href="{{ url_for('your_search') }}">Your search</a></li>
+                <li class="active"><a href="{{ url_for('our_mission') }}">Our mission</a></li>
+                <li class="active"><a href="{{ url_for('why_ethics') }}">Why Ethics?</a></li>
+                <li class="active"><a href="{{ url_for('purchase_process') }}">Purchase process</a></li>
+                <li class="active"><a href="{{ url_for('our_partnerships') }}">Our partnerships</a></li>
+                <li class="active"><a href="{{ url_for('messages') }}">Conversations</a></li>
+            </ul>
+        </div>
+        {% if current_user.is_authenticated %}
+            <div class="nav-account">
+                <h3><a href="{{ url_for('account') }}" class="account-btn">Your Account</a></h3>
+                <!-- <span class="username">Hello {{ current_user.username }}</span> -->
+            </div>
+        {% else %}
+            <div class="nav-login">
+                <a href="{{ url_for('login') }}">Login/Register</a>
+            </div>
+        {% endif %}
+        <img src="{{ url_for('static', filename='images/menu.png') }}" alt="menu" class="menu">
+    </nav>
+
+    <!-- Floating button -->
+    <button id="scrollToBottomBtn">↓</button>
+
+    <script>
+        document.getElementById('scrollToBottomBtn').addEventListener('click', function() {
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+
+    <header>
+        <div class="header-overlay">
+            <h1>COMPORTA ETHICS</h1>
+            <p>⸻⸻⸻⸻</p>
+            <p><i>Our Partnerships</i></p>
+        </div>
+    </header>
+
+    <div class="first_text">
+        <h1>Partners you can trust</h1>
+        <h1>⸻</h1><br><br><br>
+        <p>With over 7 years of experience in Portugal, we have an excellent knowledge of the most competent contacts.</p><br><br><br>
+        <h3>A wide range of people:</h3><br><br>
+        <p>● <i>Lawyers</i></p><br>
+        <p>● <i>Architects</i></p><br>
+        <p>● <i>Notaries</i></p><br>
+        <p>● <i>Entrepreneurs</i></p><br>
+        <p>● <i>Translators</i></p><br>
+        <p>● <i>Accountants</i></p><br><br><br><br>
+    </div>
+
+    <div class="your-search">
+        <br><br><br><h1>To each his own speciality</h1>
+        <h1>⸻</h1>
+    </div>
+
+    <div class="card-container">
+        <div class="card">
+            <img src="{{ url_for('static', filename='images/lawyers.jpg') }}" alt="Comporta" class="card-img">
+            <div class="card-content">
+                <br><h3 class="card-title">Specialist lawyers</h3><br><br>
+                <p class="card-text"><i>Property law</i></p><br>
+                <p class="card-text"><i>Tax law</i></p><br>
+                <p class="card-text"><i>Employment law</i></p><br>
+                <p class="card-text"><i>Litigation</i></p><br>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="{{ url_for('static', filename='images/architects.jpg') }}" alt="Carvalhal" class="card-img">
+            <div class="card-content">
+                <br><h3 class="card-title">Architects</h3><br><br>
+                <p class="card-text"><i>All types of construction</i></p><br>
+                <p class="card-text"><i>Local architect</i></p><br>
+                <p class="card-text"><i>Specialist architect</i></p><br>
+                <p class="card-text"><i>Interior architect</i></p><br>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="{{ url_for('static', filename='images/notaries.jpg') }}" alt="Melides" class="card-img">
+            <div class="card-content">
+                <br><h3 class="card-title">Notaries</h3><br><br>
+                <p class="card-text"><i>Preferred contact</i></p><br>
+            </div>
+        </div>
+    </div>
+
+    <div class="your-search2">
+        <br><br><h1>Professionals at your service</h1>
+        <h1>⸻</h1>
+    </div>
+
+    <div class="card-container2">
+        <div class="card2">
+            <img src="{{ url_for('static', filename='images/entrepreners.jpg') }}" alt="Comporta" class="card-img2">
+            <div class="card-content2">
+                <br><h3 class="card-title2">Entrepreneurs</h3><br><br>
+                <p class="card-text2"><i>A partner you can trust</i></p><br><br>
+                <p class="card-text2">Carrying out work abroad can be a stressful experience. To avoid unpleasant surprises, choosing the right partner is essential.</p><br>
+            </div>
+        </div>
+
+        <div class="card2">
+            <img src="{{ url_for('static', filename='images/translators.jpg') }}" alt="Carvalhal" class="card-img2">
+            <div class="card-content2">
+                <br><h3 class="card-title2">Translators</h3><br><br>
+                <p class="card-text2">We can put you in touch with</p>
+                <p class="card-text2">certified translators.</p><br>
+            </div>
+        </div>
+
+        <div class="card2">
+            <img src="{{ url_for('static', filename='images/accountants.jpg') }}" alt="Melides" class="card-img2">
+            <div class="card-content2">
+                <br><h3 class="card-title2">Accountants</h3><br><br>
+                <p class="card-text2">We work with a network of</p>
+                <p class="card-text2">certified accountants.</p><br>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const menu = document.querySelector(".menu");
+        const navLinks = document.querySelector(".nav-links");
+
+        menu.addEventListener('click', () => {
+            navLinks.classList.toggle('mobile-menu');
+        });
+    </script>
+
+    <div class="image-section">
+        <div class="overlay">
+            <h5 class="image-section-text">YOUR PROJECT</h5>
+            <h2 class="image-section-title">YOUR DREAM HOUSE</h2>
+            <p class="image-section-text">Because every project is different, we support you in your search.</p>
+            <div class="clickable-box">
+                <a href="{{ url_for('your_search') }}">↳ Set your search criteria ↵</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Comporta Ethics. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </footer>
+
+</body>
+</html>

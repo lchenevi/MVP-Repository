@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Account</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_account.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="logo">COMPORTA ETHICS</a>
+        <div class="nav-links">
+            <ul>
+                <li><a href="{{ url_for('news') }}">News</a></li>
+                <li><a href="{{ url_for('your_search') }}">Your search</a></li>
+                <li><a href="{{ url_for('our_mission') }}">Our mission</a></li>
+                <li><a href="{{ url_for('why_ethics') }}">Why Ethics?</a></li>
+                <li><a href="{{ url_for('purchase_process') }}">Purchase process</a></li>
+                <li><a href="{{ url_for('our_partnerships') }}">Our partnerships</a></li>
+                <li><a href="{{ url_for('messages') }}">Conversations</a></li>
+            </ul>
+        </div>
+        {% if current_user.is_authenticated %}
+            <div class="nav-account">
+                <h3><a href="{{ url_for('account') }}" class="account-btn">Your Account</a></h3>
+                <!-- <span class="username">Hello {{ current_user.username }}</span> -->
+            </div>
+        {% else %}
+            <div class="nav-login">
+                <a href="{{ url_for('login') }}">Login/Register</a>
+            </div>
+        {% endif %}
+    </nav>
+
+    <main class="account-content">
+        <!-- <h1>Your Account</h1> -->
+        <h1><span class="username">Hello {{ current_user.username }}</span></h1>
+        <p>Manage your account preferences here.</p><br><br>
+
+        <form action="{{ url_for('update_account') }}" method="POST" class="account-form">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" value="{{ current_user.username }}" required>
+            </div>
+            <div class="form-group">
+                <label for="phone_number">Phone Number</label>
+                <input type="tel" id="phone_number" name="phone_number" placeholder="Enter your phone number">
+            </div>
+            <div class="form-group">
+                <label for="password">New Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter new password">
+            </div>
+            <div class="form-group">
+                <label for="confirm_password">Confirm New Password</label>
+                <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm new password">
+            </div>
+            <button type="submit" class="update-btn">Update Account</button>
+        </form>
+
+        <!-- <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a> -->
+        <div class="button-container">
+            <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Comporta Ethics. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </footer>
+</body>
+</html>

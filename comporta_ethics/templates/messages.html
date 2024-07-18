@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='chat.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Include Socket.IO client -->
+    <script src="https://cdn.socket.io/4.3.2/socket.io.min.js"></script>
+    <script type="text/javascript">
+        var socket = io();
+
+        // Event listener for incoming messages
+        socket.on('new_message', function(data) {
+            var message = data.content;
+            var sender = data.sender;
+            var li = document.createElement('li');
+            li.textContent = sender + ': ' + message;
+            document.getElementById('received-messages').appendChild(li);
+        });
+
+        function sendMessage() {
+            var messageInput = document.getElementById('message-input');
+            var message = messageInput.value;
+            if (message.trim() !== '') {
+                socket.emit('send_message', {content: message});
+                messageInput.value = '';
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h1>Chat</h1>
+        </div>
+        <div class="chat-messages">
+            <h2>Received Messages</h2>
+            <ul id="received-messages">
+                {% for message in received_messages %}
+                    <li>{{ message.timestamp }} - {{ message.sender.username }}: {{ message.content }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="message-input" placeholder="Type your message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+        <div class="chat-messages">
+            <h2>Sent Messages</h2>
+            <ul>
+                {% for message in sent_messages %}
+                    <li>{{ message.timestamp }} - To {{ message.receiver.username }}: {{ message.content }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

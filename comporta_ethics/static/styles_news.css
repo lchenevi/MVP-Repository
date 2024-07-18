@@ -1,0 +1,386 @@
+:root {
+	--primary-color: #333;
+	--secondary-color: #666;
+	--background-color: rgb(0, 28, 74);
+	--card-shadow: rgba(0, 0, 0, 0.1);
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	list-style: none;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+	background-color: rgb(1, 12, 30);
+}
+
+/* Footer styles */
+footer {
+	background-color: #333; /* Dark background color */
+	color: #fff; /* White text color for contrast */
+	text-align: center; /* Center-align the text */
+	padding: 20px 0; /* Add padding for some space around the text */
+	position: relative; /* Position relative for any child positioning */
+	margin:-50px 0 0 0; /* Add top margin to separate it from content above */
+	box-shadow: 0 -2px 10px rgba(0, 0, 0, .2); /* Add shadow to the top for depth */
+}
+
+footer p {
+	margin: 0; /* Remove default margin */
+	font-size: 1em; /* Set font size */
+}
+
+footer a {
+	color: #fff; /* White color for links */
+	text-decoration: none; /* Remove underline from links */
+	margin: 0 10px; /* Add some spacing between links */
+}
+
+footer a:hover {
+	text-decoration: underline; /* Underline on hover */
+}
+
+/* Optional: Add social media icons */
+footer .social-icons {
+	margin-top: 10px;
+}
+
+footer .social-icons a {
+	margin: 0 10px;
+	color: #fff;
+	font-size: 1.2em;
+	text-decoration: none;
+}
+
+footer .social-icons a:hover {
+	color: #ddd;
+}
+
+/* !!! HEADER STYLE*/
+header {
+	height: 100vh;
+	width: 100%;
+	background: url(images/sea.jpg) no-repeat center center/cover;
+	background-attachment: fixed;
+	position: relative; /* Ensure the overlay covers the entire header */
+}
+
+.header-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.25); /* Dark overlay for better text visibility */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: white; /* Text color on the overlay */
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+	text-align: center; /* Center align text */
+	padding: 0 20px; /* Padding for text */
+	box-sizing: border-box; /* Include padding in width/height calculations */
+}
+
+.header-overlay h1 {
+	font-size: 3em;
+	margin-bottom: 20px;
+}
+
+.header-overlay p {
+	font-size: 1.5em;
+	margin-bottom: 20px;
+}
+
+.header-overlay a {
+	display: inline-block;
+	background-color: #fff; /* Example background color for the link */
+	color: #000; /* Example text color for the link */
+	padding: 10px 20px;
+	text-decoration: none;
+	border-radius: 5px;
+	transition: background-color 0.3s ease;
+}
+
+.header-overlay a:hover {
+	background-color: #ccc; /* Example hover background color */
+}
+
+/* !!! NAVBAR STYLE*/
+.navbar {
+    position: sticky;
+    padding: 20px; /* Reduced padding for a more compact navbar */
+    display: flex;
+    top: 0;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: white;
+    z-index: 4;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow for depth */
+}
+
+.navbar .logo {
+    font-size: 1em; /* Increased font size for the logo */
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.navbar .logo:hover {
+    transform: scale(1.05);
+}
+
+.navbar .active a {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.navbar .nav-links ul {
+    list-style: none; /* Remove default list style */
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar .nav-links ul li {
+    margin: 0 15px; /* Increased margin between nav items */
+}
+
+.navbar .nav-links ul li a {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.navbar .nav-links ul li a:hover {
+    color: #2f8fc6; /* Hover color for nav links */
+}
+
+.nav-login a{
+	color: black;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.nav-login a:hover{
+	color: red; /* Hover color for nav links */
+}
+
+.navbar .nav-login:hover{
+	transform: scale(1.05);
+}
+
+.navbar .nav-logout {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .nav-logout:hover {
+    transform: scale(1.05);
+}
+
+.navbar .logout-btn {
+    background-color: #ff5a5a;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+}
+
+.navbar .logout-btn:hover {
+    background-color: #ff3333;
+}
+
+.navbar .username {
+    font-weight: bold;
+    color: #333; /* Adjust username color */
+    margin-right: 15px; /* Increased margin between logout button and username */
+}
+
+.navbar .menu {
+    display: none;
+    cursor: pointer;
+}
+
+.account-btn{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+@media (max-width: 768px) {
+    .navbar .nav-links ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 10px 0;
+        z-index: 10;
+    }
+
+    .navbar .nav-links ul li {
+        margin: 10px 0;
+    }
+
+    .navbar .nav-links ul li a {
+        padding: 10px 20px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar .menu {
+        display: block;
+    }
+}
+
+.your-search{
+	margin-top: 50px;
+	margin-bottom: 50px;
+	text-align: center;
+	color: rgb(255, 255, 255);
+	text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.771);
+}
+
+/* Add styles for the news boxes */
+.news-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 20px;
+}
+
+.news-box {
+    width: 30%;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+}
+
+.news-box:hover {
+    transform: scale(1.05);
+}
+
+.news-box a {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+}
+
+.news-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.news-content {
+    padding: 15px;
+}
+
+.news-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+	color: rgb(81, 132, 78);
+}
+
+.news-description {
+    font-size: 1em;
+    color: #666;
+	color: rgb(81, 132, 78);
+}
+
+/* styles.css */
+#scrollToBottomBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    background-color: rgba(94, 44, 44, 0.685);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 18px;
+}
+
+#scrollToBottomBtn:hover {
+    background-color: rgba(94, 44, 44, 0.745);
+}
+
+/* !!! BOTTOM IMAGE*/
+.image-section {
+	position: relative;
+	width: 100%;
+	margin: 50px auto; /* Center the section horizontally */
+	height: 800px; /* Adjust height as needed */
+	background: url('images/house.jpg') no-repeat center center/cover;
+	box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5); /* Dark overlay for better text visibility */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.image-section-title {
+	color: white;
+	font-size: 2em;
+	margin-bottom: 80px;
+	text-align: center;
+}
+
+.image-section-text {
+	color: white;
+	font-size: 1.2em;
+	text-align: center;
+	padding: 30 20px; /* Adjust padding as needed */
+}
+
+.clickable-box {
+	background-color: white; /* Background color of the clickable box */
+	padding: 20px; /* Adjust padding as needed */
+	border-radius: 5px;
+	margin-top: 20px; /* Adjust margin as needed */
+	backdrop-filter: blur(3px);
+}
+
+.clickable-box a {
+	color: black;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 1.2em;
+}
+
+.clickable-box:hover {
+	transform: scale(1.05);
+}

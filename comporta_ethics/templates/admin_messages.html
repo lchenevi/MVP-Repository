@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Messages</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='chat_admin.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.socket.io/4.3.2/socket.io.min.js"></script>
+
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h1>Admin Chat</h1>
+        </div>
+        <div class="chat-messages">
+            <h2>Received Messages</h2>
+            <ul id="received-messages">
+                {% for message in received_messages %}
+                    <li>{{ message.timestamp }} - {{ message.sender.username }}: {{ message.content }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="chat-input">
+            <select id="receiver-id" onchange="openChatBox(this.value, this.options[this.selectedIndex].text)">
+                <option value="">Select User</option>
+                {% for user in users %}
+                    <option value="{{ user.id }}">{{ user.username }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var socket = io();
+
+        // Event listener for incoming messages
+        socket.on('new_message', function(data) {
+            var message = data.content;
+            var sender = data.sender;
+            var timestamp = data.timestamp;
+            var receiverId = data.receiver_id;
+
+            // Find or create the appropriate chat box
+            var chatBox = document.getElementById('chat-box-' + receiverId);
+            if (!chatBox) {
+                openChatBox(receiverId, sender); // Create chat box if not exists
+                chatBox = document.getElementById('chat-box-' + receiverId);
+            }
+
+            // Update the chat messages list
+            var ul = chatBox.querySelector('.chat-messages ul');
+            var li = document.createElement('li');
+            li.textContent = `${timestamp} - ${sender}: ${message}`;
+            ul.appendChild(li);
+        });
+
+        function sendMessage(receiverId) {
+            var messageInput = document.getElementById('message-input-' + receiverId);
+            var message = messageInput.value;
+            if (message.trim() !== '') {
+                socket.emit('send_message', {
+                    receiver_id: receiverId,
+                    content: message,
+                    timestamp: new Date().toLocaleString()
+                });
+                messageInput.value = '';
+            }
+        }
+
+        function openChatBox(receiverId, receiverUsername) {
+            var existingChatBox = document.getElementById('chat-box-' + receiverId);
+            if (!existingChatBox) {
+                var chatContainer = document.createElement('div');
+                chatContainer.classList.add('chat-box');
+                chatContainer.id = 'chat-box-' + receiverId;
+
+                var chatHeader = document.createElement('div');
+                chatHeader.classList.add('chat-header');
+                chatHeader.innerHTML = `<h2>Chat with ${receiverUsername}</h2>`;
+
+                var chatMessages = document.createElement('div');
+                chatMessages.classList.add('chat-messages');
+                chatMessages.innerHTML = `<ul></ul>`;
+
+                var chatInput = document.createElement('div');
+                chatInput.classList.add('chat-input');
+                chatInput.innerHTML = `
+                    <input type="text" id="message-input-${receiverId}" placeholder="Type your message...">
+                    <button onclick="sendMessage(${receiverId})">Send</button>
+                `;
+
+                chatContainer.appendChild(chatHeader);
+                chatContainer.appendChild(chatMessages);
+                chatContainer.appendChild(chatInput);
+
+                document.body.appendChild(chatContainer);
+            }
+        }
+    </script>
+</body>
+</html>
