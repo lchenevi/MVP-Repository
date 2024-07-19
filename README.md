@@ -134,3 +134,4 @@ Here is an overview of the key files and directories in the project:
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
+LinkedIn: https://www.linkedin.com/in/leo-cheneviere-24a53b235/
